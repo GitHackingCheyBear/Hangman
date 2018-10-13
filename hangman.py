@@ -49,5 +49,7 @@ if start == "yes":
             print(wordList)
         else:
             print("Only guess one letter. ")
+    print("You have run out of guesses.")
+    print("The word you had to guess was " + str(wordToGuess) + ".")
 else:
     start = raw_input("Are you ready to begin? ")
