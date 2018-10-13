@@ -2,6 +2,8 @@ import random
 u = "_"
 #sets variable as False to see if the letter guessed exists at all in the word
 letterInWord = False
+#sets variable to try and count the correct letters
+correctLetters = 0
 #creates a list for the blanks in the words
 wordList = []
 #sets the wrong guesses variable
@@ -38,6 +40,7 @@ if start == "yes":
                 for x in wordToGuess:
                     y += 1
                     if str(guess) == x:
+                        correctLetters += 1
                         wordList.insert(y, x)
                         wordList.remove(u)
                         letterInWord = True
@@ -46,6 +49,8 @@ if start == "yes":
                     wrongGuesses += 1
                     guessesLeft = 5 - wrongGuesses
                     print("You still have " + str(guessesLeft) + " guesses left.")
+                elif correctLetters == len(wordToGuess):
+                    print("You have successfully guessed the word!")
             print(wordList)
         else:
             print("Only guess one letter. ")
