@@ -1,4 +1,8 @@
 import random
+#sets variable as False to see if the letter guessed exists at all in the word
+letterInWord = False
+#creates a list for the blanks in the words
+wordList = []
 #sets the wrong guesses variable
 wrongGuesses = 0
 #list of possible words to guess
@@ -16,33 +20,30 @@ print("Thereby providing you with six rare opportunities to defend me.")
 print("For each person you fail to defend me from, I lose a chance at life.")
 start = raw_input("Are you ready to begin? ")
 
-letter = "w"
-print type(letter)
-
+#creates the lines for the words
 if start == "yes":
     wordToGuess = (possibleWords[word])
     print(wordToGuess)
-    print "\n"
     for x in wordToGuess:
-        print "_" ,
+        wordList.append("_")
+    print(wordList)
 
-    print "\n"
     while wrongGuesses < 6:
-        guess = input("Guess a letter. ")
-        print type(guess)
-
-        #if type(guess) == int:
-        #    print("This here is an integer.")
-        #else:
-        #    print("This is not an integer.")
-
-        print guess
-        if type(guess) == str:
-            print type(guess)
-            if len(guess) == 1:
+        guess = raw_input("Guess a letter. ")
+        if len(guess) == 1:
+            if guess:
+                letterInWord = False
                 for x in wordToGuess:
                     if str(guess) == x:
-                        print("correct")
+                        wordList.append(x),
+                        letterInWord = True
+                    elif str(guess) != x:
+                        print(wordList)
+                if letterInWord == False:
+                    print("That letter is not in the word.")
+                    wrongGuesses += 1
+                    guessesLeft = 6 - wrongGuesses
+                    print("You still have " + str(guessesLeft) + " guesses left.")
         else:
             print("Only guess one letter. ")
 else:
