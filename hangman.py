@@ -1,10 +1,11 @@
 import random
+u = "_"
 #sets variable as False to see if the letter guessed exists at all in the word
 letterInWord = False
 #creates a list for the blanks in the words
 wordList = []
 #sets the wrong guesses variable
-wrongGuesses = 0
+wrongGuesses = -1
 #list of possible words to guess
 possibleWords = ["salem", "nymph", "boston", "stocks", "pentagram", "occult", "devil", "witchcraft", "rituals"]
 #picks a random number for list
@@ -32,18 +33,20 @@ if start == "yes":
         guess = raw_input("Guess a letter. ")
         if len(guess) == 1:
             if guess:
+                y = 0
                 letterInWord = False
                 for x in wordToGuess:
+                    y += 1
                     if str(guess) == x:
-                        wordList.append(x),
+                        wordList.insert(y, x)
+                        wordList.remove(u)
                         letterInWord = True
-                    elif str(guess) != x:
-                        print(wordList)
                 if letterInWord == False:
                     print("That letter is not in the word.")
                     wrongGuesses += 1
-                    guessesLeft = 6 - wrongGuesses
+                    guessesLeft = 5 - wrongGuesses
                     print("You still have " + str(guessesLeft) + " guesses left.")
+            print(wordList)
         else:
             print("Only guess one letter. ")
 else:
